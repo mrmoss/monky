@@ -102,7 +102,7 @@ NSString* runCommand(NSString* commandToRun)
 	-(void)timer_func
 	{
 		[_window setFrameTopLeftPoint:NSMakePoint(x_off,[[NSScreen mainScreen] frame].size.height)];
-		[_textView setString:runCommand(command)];
+		[_textView setString:[NSString stringWithFormat:@"\n%s",[runCommand(command) UTF8String]]];
 	}
 
 	-(void)timer_cb:(NSTimer*)aTimer
