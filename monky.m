@@ -66,7 +66,9 @@ NSString* runCommand(NSString* commandToRun)
 
 			NSUInteger collectionBehavior;
 			collectionBehavior=[_window collectionBehavior];
+			collectionBehavior|=NSWindowCollectionBehaviorStationary;
 			collectionBehavior|=NSWindowCollectionBehaviorCanJoinAllSpaces;
+			collectionBehavior|=NSWindowCollectionBehaviorFullScreenNone;
 			[_window setCollectionBehavior:collectionBehavior];
 
 			_windowController=[[NSWindowController alloc] initWithWindow:_window];
@@ -82,8 +84,6 @@ NSString* runCommand(NSString* commandToRun)
 			NSFontManager* fontManager=[NSFontManager sharedFontManager];
 			NSFont* font=[fontManager fontWithFamily:@"Monaco" traits:NSBoldFontMask weight:0 size:12];
 			[_textView setFont:font];
-
-			[_window orderFrontRegardless];
 
 			_timer=
 			[
@@ -103,6 +103,7 @@ NSString* runCommand(NSString* commandToRun)
 	{
 		[_window setFrameTopLeftPoint:NSMakePoint(x_off,[[NSScreen mainScreen] frame].size.height)];
 		[_textView setString:[NSString stringWithFormat:@"\n%s",[runCommand(command) UTF8String]]];
+		[_window orderBack:self];
 	}
 
 	-(void)timer_cb:(NSTimer*)aTimer

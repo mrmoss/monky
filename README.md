@@ -22,7 +22,6 @@ There are no dependencies other than macOS and and the cocoa framework...
 # Bugs
 
 - I have NO IDEA how memory mangement works with objective-c...so possible memory leaks?
-- The window shows up in the Mission Control window switcher...don't know how to not make it do that...
 
 # Screenshots
 
