@@ -29,4 +29,4 @@ There are no dependencies other than macOS and and the cocoa framework...
 Note: The script I'm running is a custom viewing script...you'll have to make your own T_T
 
 ![](https://github.com/mrmoss/monky/raw/master/screenshots/overview.png)
-![](https://github.com/mrmoss/monky/raw/master/screenshots/overview.png)
+![](https://github.com/mrmoss/monky/raw/master/screenshots/zoomed_in.png)
