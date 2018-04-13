@@ -11,7 +11,7 @@ Usage: `./monky [int INTERVAL_IN_SECONDS] [str COMMAND]`
 
 Example 1 (shows the date every 2 seconds): `./monky 2 date`
 
-Example 2 (shows the 5 processes from ps): `./monky 2 'ps -ef|head -n 6'`
+Example 2 (shows the first 5 processes from ps every 2 seconds): `./monky 2 'ps -ef|head -n 6'`
 
 # Building
 
