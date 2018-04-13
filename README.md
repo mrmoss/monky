@@ -5,7 +5,7 @@ I got conky to compile for macOS...but it uses XQuartz...but transparecy doesn't
 
 This only supports text.
 
-#Usage
+# Usage
 
 Usage: `./monky [int INTERVAL_IN_SECONDS] [str COMMAND]`
 
