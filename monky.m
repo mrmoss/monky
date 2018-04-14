@@ -1,32 +1,31 @@
 #import "Cocoa/Cocoa.h"
 #include <Foundation/Foundation.h>
 
+//20:20
+
 float x_off=16;
 
 NSString* command;
-int interval_in_secs=0;
+float interval_in_secs=0;
 
 NSString* runCommand(NSString* commandToRun)
 {
-	NSTask *task = [[NSTask alloc] init];
+	NSTask* task=[[[NSTask alloc] init] autorelease];
 	[task setLaunchPath:@"/bin/sh"];
 
-	NSArray *arguments = [NSArray arrayWithObjects:
-						  @"-c" ,
-						  [NSString stringWithFormat:@"%@", commandToRun],
-						  nil];
+	NSArray* arguments=[NSArray arrayWithObjects:@"-c" ,[NSString stringWithFormat:@"%@",commandToRun],nil];
 	[task setArguments:arguments];
 
-	NSPipe *pipe = [NSPipe pipe];
+	NSPipe* pipe=[NSPipe pipe];
 	[task setStandardOutput:pipe];
 
-	NSFileHandle *file = [pipe fileHandleForReading];
+	NSFileHandle* file=[pipe fileHandleForReading];
 
 	[task launch];
 
-	NSData *data = [file readDataToEndOfFile];
+	NSData* data=[file readDataToEndOfFile];
+	NSString* output=[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 
-	NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	return output;
 }
 
@@ -71,10 +70,10 @@ NSString* runCommand(NSString* commandToRun)
 			collectionBehavior|=NSWindowCollectionBehaviorFullScreenNone;
 			[_window setCollectionBehavior:collectionBehavior];
 
-			_windowController=[[NSWindowController alloc] initWithWindow:_window];
+			_windowController=[[[NSWindowController alloc] initWithWindow:_window] autorelease];
 			[_windowController autorelease];
 
-			_textView=[[NSTextView alloc] initWithFrame:_windowRect];
+			_textView=[[[NSTextView alloc] initWithFrame:_windowRect] autorelease];
 			[_textView autorelease];
 			[_window setContentView:_textView];
 			_textView.backgroundColor=NSColor.clearColor;
@@ -94,6 +93,8 @@ NSString* runCommand(NSString* commandToRun)
 				repeats:YES
 			];
 
+			[_window orderBack:self];
+
 			[self timer_func];
 		}
 		return newInstance;
@@ -102,8 +103,8 @@ NSString* runCommand(NSString* commandToRun)
 	-(void)timer_func
 	{
 		[_window setFrameTopLeftPoint:NSMakePoint(x_off,[[NSScreen mainScreen] frame].size.height)];
-		[_textView setString:[NSString stringWithFormat:@"\n%s",[runCommand(command) UTF8String]]];
-		[_window orderBack:self];
+		NSString* command_data=runCommand(command);
+		[_textView setString:[NSString stringWithFormat:@"\n%s",[command_data UTF8String]]];
 	}
 
 	-(void)timer_cb:(NSTimer*)aTimer
@@ -120,15 +121,15 @@ int main(int argc,const char* argv[])
 		return 1;
 	}
 
-	if(sscanf(argv[1],"%d",&interval_in_secs)!=1)
+	if(sscanf(argv[1],"%f",&interval_in_secs)!=1)
 	{
 		printf("\"%s\" is not an int.\n",argv[1]);
 		return 1;
 	}
 
-	command=[[NSString alloc] initWithUTF8String:argv[2]];
+	command=[[[NSString alloc] initWithUTF8String:argv[2]] autorelease];
 	[NSApplication sharedApplication];
-	app_t* app=[[app_t alloc] init];
+	app_t* app=[[[app_t alloc] init] autorelease];
 	[NSApp run];
 	return 0;
 }

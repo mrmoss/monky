@@ -19,10 +19,6 @@ There are no dependencies other than macOS and and the cocoa framework...
 
 `make`
 
-# Bugs
-
-- I have NO IDEA how memory mangement works with objective-c...so possible memory leaks?
-
 # Screenshots
 
 Note: The script I'm running is a custom viewing script...you'll have to make your own T_T
