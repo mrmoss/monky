@@ -1,10 +1,11 @@
 #import "Cocoa/Cocoa.h"
 #include <Foundation/Foundation.h>
 
-//20:20
+//02:14
 
 float x_off=16;
 
+NSAutoreleasePool* pool;
 NSString* command;
 float interval_in_secs=0;
 
@@ -25,6 +26,8 @@ NSString* runCommand(NSString* commandToRun)
 
 	NSData* data=[file readDataToEndOfFile];
 	NSString* output=[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+
+	task=nil;
 
 	return output;
 }
@@ -105,6 +108,8 @@ NSString* runCommand(NSString* commandToRun)
 		[_window setFrameTopLeftPoint:NSMakePoint(x_off,[[NSScreen mainScreen] frame].size.height)];
 		NSString* command_data=runCommand(command);
 		[_textView setString:[NSString stringWithFormat:@"\n%s",[command_data UTF8String]]];
+
+		command_data=nil;
 	}
 
 	-(void)timer_cb:(NSTimer*)aTimer
@@ -127,6 +132,7 @@ int main(int argc,const char* argv[])
 		return 1;
 	}
 
+	NSAutoreleasePool* pool=[[NSAutoreleasePool alloc] init];
 	command=[[[NSString alloc] initWithUTF8String:argv[2]] autorelease];
 	[NSApplication sharedApplication];
 	app_t* app=[[[app_t alloc] init] autorelease];
