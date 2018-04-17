@@ -25,3 +25,7 @@ Note: The script I'm running is a custom viewing script...you'll have to make yo
 
 ![](https://github.com/mrmoss/monky/raw/master/screenshots/overview.png)
 ![](https://github.com/mrmoss/monky/raw/master/screenshots/zoomed_in.png)
+
+# Known Issues
+
+Seems to freeze up after 10+ hours of use...no idea why...it doesn't appear to be leaking memory...
