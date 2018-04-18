@@ -1,9 +1,9 @@
 # Overview
 This is a terrible ripoff of conky for macOS.
 
-I got conky to compile for macOS...but it uses XQuartz...but transparecy doesn't work...only shows up on one desktop...etc...
+I got conky to compile for macOS...but it uses XQuartz...and transparecy doesn't work...and it only shows up on one desktop...etc...
 
-This only supports text.
+This only supports text (no bars or fancy graphics...not yet anyways...).
 
 # Usage
 
