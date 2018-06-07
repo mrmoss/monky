@@ -1,9 +1,8 @@
 #import "Cocoa/Cocoa.h"
 #include <Foundation/Foundation.h>
 
-//02:14
-
 float x_off=16;
+float y_off=16;
 
 NSAutoreleasePool* pool;
 NSString* command;
@@ -50,7 +49,7 @@ NSString* runCommand(NSString* commandToRun)
 		id newInstance=[super init];
 		if (newInstance)
 		{
-			_windowRect=NSMakeRect(x_off,[[NSScreen mainScreen] frame].size.height,1000,1000);
+			_windowRect=NSMakeRect(x_off,[[NSScreen mainScreen] frame].size.height,1000,2000);
 			_window =
 			[
 				[NSWindow alloc] initWithContentRect:_windowRect
@@ -105,7 +104,7 @@ NSString* runCommand(NSString* commandToRun)
 
 	-(void)timer_func
 	{
-		[_window setFrameTopLeftPoint:NSMakePoint(x_off,[[NSScreen mainScreen] frame].size.height)];
+		[_window setFrameTopLeftPoint:NSMakePoint(x_off,[[NSScreen mainScreen] frame].size.height-y_off)];
 		NSString* command_data=runCommand(command);
 		[_textView setString:[NSString stringWithFormat:@"\n%s",[command_data UTF8String]]];
 
